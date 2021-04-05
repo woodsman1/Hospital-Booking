@@ -9,7 +9,6 @@ class Day(models.Model):
         return f'{self.name}'
     
 
-
 class Slot(models.Model):
     title = models.CharField(max_length=250)
     start_time = models.TimeField()
@@ -29,3 +28,11 @@ class Time_Table(models.Model):
         return f'{self.day} - {self.title}'
 
 
+class Booking(models.Model):
+    patient = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField()
+    day = models.ForeignKey(Day, on_delete=models.CASCADE)
+    slot = models.ForeignKey(Slot, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.patient}, booked {self.slot.title} on {self.date}'
