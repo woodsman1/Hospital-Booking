@@ -1,9 +1,18 @@
 import secrets
 import string
 from .models import RefreshToken
+from rest_framework.authtoken.models import Token
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
+@receiver(post_save, sender = User)
+def create_Token(sender, instance=None, created=False, **kwarg):
+    if created:
+        Token.objects.create(user=instance)
+
 
 def generate_random_token(length=20):
-    # length=20
     res = ''.join(secrets.choice(string.ascii_letters + string.digits) for x in range(length))
     return res
 

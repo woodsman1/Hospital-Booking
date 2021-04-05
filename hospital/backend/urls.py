@@ -6,9 +6,9 @@ app_name = "backend"
 
 urlpattern = [
     
-    # path("register/", UserRegistrationApi.as_view(), name='register'),
-    # path('login/', CustomAuthToken.as_view()),
-    # path('refresh/', getAccessToken.as_view()),
+    path("register/", UserRegistrationApi.as_view(), name='register'),
+    path('login/', CustomAuthToken.as_view()),
+    path('refresh/', getAccessToken.as_view()),
 
 
 
