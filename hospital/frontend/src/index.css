@@ -1,0 +1,25 @@
+.create {
+    font-family: Aleo;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 10%;
+    text-align: center;
+  }
+  
+  .create h2 {
+    margin-bottom: 20px;
+  }
+  
+  .create label {
+    text-align: left;
+    display: block;
+  }
+  
+  .create input {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 10px 0;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: block;
+  }
