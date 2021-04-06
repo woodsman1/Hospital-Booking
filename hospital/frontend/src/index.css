@@ -6,20 +6,45 @@
     text-align: center;
   }
   
-  .create h2 {
-    margin-bottom: 20px;
-  }
-  
-  .create label {
-    text-align: left;
-    display: block;
-  }
-  
-  .create input {
-    width: 100%;
-    padding: 6px 10px;
-    margin: 10px 0;
-    border: 1px solid black;
-    box-sizing: border-box;
-    display: block;
-  }
+.create h2 {
+  margin-bottom: 20px;
+}
+
+.create label {
+  text-align: left;
+  display: block;
+}
+
+.create input {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: block;
+}
+
+
+.date {
+  margin: 20px;
+  height: 10vh;
+}
+.date daypicker{
+  margin-top: 20px;
+  height: 10vh;
+}
+
+.day{
+  margin:20px;
+  height :7vh;
+}
+
+.time-table{
+  margin: 20px;
+  height: 50vh;
+}
+
+
+
+
+
