@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from django.shortcuts import get_object_or_404
 
-from .models import Time_Table, Booking, Day
+from .models import Time_Table, Booking, Day, Slot
 
 
 
@@ -27,8 +28,9 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-class DateSerializer(serializers.ModelSerializer):
+class DateSerializer(serializers.Serializer):
     date = serializers.DateField()
+
 
 class DaySerializer(serializers.ModelSerializer):
     class Meta:
@@ -39,3 +41,12 @@ class BookingDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = "__all__"
+
+class SlotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Slot
+        fields = "__all__"
+    
+
+class IdSerializer(serializers.Serializer):
+    id = serializers.IntegerField()

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -73,12 +73,12 @@ class getAccessToken(APIView):
 
 class BookingSlotsApi(APIView):
 
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     # get the Booked slot details by date entered
     def get(self, request):
         serializer = DateSerializer(data=request.data)
-        serializers.is_valid(raise_exception=True)
+        serializer.is_valid(raise_exception=True)
 
         booked_slots = Booking.objects.filter(date=serializer.validated_data["date"])
         
@@ -92,8 +92,9 @@ class BookingSlotsApi(APIView):
 
 class Time_tableApi(APIView):
 
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
+    # eg "name":"Monday"
     def get(self, request): 
         serializer = DaySerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -106,3 +107,21 @@ class Time_tableApi(APIView):
         return Response(serializer.data)
 
 # add class for updating slots
+
+class SlotApi(APIView):
+
+    # Get slot details by id
+    def get(self, request):
+        serializer = IdSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        id = serializer.validated_data["id"]
+        slot = Slot.objects.get(pk=id)
+
+        serializer = SlotSerializer(slot)
+        print(serializer)
+        return Response(serializer.data)
+
+    # update slot
+    def post(self, request):
+        pass
