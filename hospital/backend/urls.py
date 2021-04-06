@@ -4,12 +4,10 @@ from .views import *
 
 app_name = "backend"
 
-urlpattern = [
+urlpatterns = [
     
     path("register/", UserRegistrationApi.as_view(), name='register'),
     path('login/', CustomAuthToken.as_view()),
     path('refresh/', getAccessToken.as_view()),
-
-
 
 ]
