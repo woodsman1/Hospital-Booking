@@ -50,7 +50,7 @@ const App = () => {
                 {loading ? (
                   <h1>loading ... </h1>
                 ) : (
-                  <Home/>
+                  <Home authToken={authToken}/>
                 )}
               </Route>
               <Route exact path="/login">

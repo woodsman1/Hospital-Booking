@@ -44,6 +44,10 @@
   height: 50vh;
 }
 
+.coustom-time-table {
+  height: 55vh;
+  overflow: auto;
+}
 
 
 

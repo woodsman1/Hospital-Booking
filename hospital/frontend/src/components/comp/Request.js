@@ -89,6 +89,34 @@ const onSignUp = async (obj, setAuthToken, setAuthenticated) => {
       }
 };
 
+
+const updateTimeTable = async (obj, authToken, setTimeTable) => {
+  try {
+    const res = await fetch("http://127.0.0.1:8000/api/time-table/", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(obj),
+
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res;
+        } else {
+          throw Error(`bad request ${res.status}`);
+        }
+      })
+      .catch(console.error);
+
+    const data = await res.json();
+
+    setTimeTable(data);
+    
+  } catch (err) {}
+};
+
 export { RefreshTokenCall };
 export { onLogin };
 export { onSignUp };
+export { updateTimeTable };

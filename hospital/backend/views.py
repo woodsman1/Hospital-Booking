@@ -96,24 +96,26 @@ class Time_tableApi(APIView):
     # permission_classes = (IsAuthenticated,)
 
     # eg "name":"Monday" and "date":"2021-06-12"
-    def get(self, request): 
-        serializer = DayDateSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        day = serializer.validated_data["name"]
-        date = serializer.validated_data["date"]
+    def post(self, request): 
+        try:
+            serializer = DayDateSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            day = serializer.validated_data["name"]
+            date = serializer.validated_data["date"]
 
-        day = Day.objects.get(name=day)
-        schedule = Time_Table.objects.get(day=day)
+            day = Day.objects.get(name=day)
+            schedule = Time_Table.objects.get(day=day)
 
-        slots = schedule.slots.all()
+            slots = schedule.slots.all()
 
-        for slot in slots:
-            slot.booked = check_booked_slot(date, slot)
-        
-        serializer = SlotSerializer(slots, many=True)
-        
-        return Response(serializer.data)
-
+            for slot in slots:
+                slot.booked = check_booked_slot(date, slot)
+            
+            serializer = SlotSerializer(slots, many=True)
+            
+            return Response(serializer.data)
+        except:
+            return Response([])
 
 # add class for updating slots
 
