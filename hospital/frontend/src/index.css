@@ -45,17 +45,20 @@
 }
 
 .coustom-time-table {
-  height: 55vh;
+  height: 60vh;
+  padding: 0.5%;
   overflow: auto;
 }
 
 .slot-area{
   margin :10px;
+  padding: 1%;
   cursor: pointer; ;
 }
 
 .slot-area-booked{
   margin :10px;
+  padding: 1%;
   background-color: #ff9999;
 }
 

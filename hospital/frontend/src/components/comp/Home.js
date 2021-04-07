@@ -76,7 +76,7 @@ const Home = ({ authToken }) => {
         </div>
 
         <div className="time-table">
-          <div className="card coustom-time-table">
+          <div className="coustom-time-table">
             <h4 style={{ fontFamily: "Aleo", textAlign: "center" }}>
               Time Table
             </h4>

@@ -64,7 +64,7 @@ const TimeTable = ({ slot, date, day, authToken }) => {
               End: <span style={{ fontWeight: "bold" }}>{slot.end_time}</span>
             </span>
             <span
-              style={{ float: "right", marginRight: "2%", marginBottom: "1%" }}
+              style={{ float: "right", marginRight: "2%"}}
             >
               <GrAdd size={20} />
             </span>

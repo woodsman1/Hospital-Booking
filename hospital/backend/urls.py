@@ -10,7 +10,6 @@ urlpatterns = [
     path('refresh/', getAccessToken.as_view()),
     path('booking/', BookingSlotsApi.as_view(), name='bookingdetail'),
     path('time-table/', Time_tableApi.as_view(), name='time-table'),
-    # path('slot/', SlotApi.as_view(), name='slot'),
     path('delete-booked-slot/', DeleteBookedSlotApI.as_view(), name='slot'),
 
 ]
