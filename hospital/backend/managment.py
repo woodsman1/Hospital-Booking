@@ -7,6 +7,9 @@ from .models import Booking
 # if free book the slot and return true else False
 
 
-def check_free_slot(date, slot):
-    objs = Booking.objects.filter()
-    pass
+def check_booked_slot(date, slot):
+    try:
+        objs = Booking.objects.get(date=date, slot=slot)
+        return True
+    except:
+        return False

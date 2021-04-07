@@ -32,10 +32,11 @@ class DateSerializer(serializers.Serializer):
     date = serializers.DateField()
 
 
-class DaySerializer(serializers.ModelSerializer):
+class DayDateSerializer(serializers.ModelSerializer):
+    date = serializers.DateField()
     class Meta:
         model = Day
-        fields = "__all__"
+        fields = ["name", "date"]
 
 class BookingDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,7 +46,7 @@ class BookingDetailSerializer(serializers.ModelSerializer):
 class SlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slot
-        fields = "__all__"
+        fields = ["title", "start_time", "end_time", "break_time", "booked"]
     
 
 class IdSerializer(serializers.Serializer):

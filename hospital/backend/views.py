@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from .signals import get_refresh_token
 from .serializers import *
 from .models import *
+from .managment import check_booked_slot
 
 
 class CustomAuthToken(ObtainAuthToken, APIView):
@@ -94,17 +95,25 @@ class Time_tableApi(APIView):
 
     # permission_classes = (IsAuthenticated,)
 
-    # eg "name":"Monday"
+    # eg "name":"Monday" and "date":"2021-06-12"
     def get(self, request): 
-        serializer = DaySerializer(data=request.data)
+        serializer = DayDateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         day = serializer.validated_data["name"]
-        obj = Day.objects.get(name=day)
-        schedule = Time_Table.objects.get(day=obj)
+        date = serializer.validated_data["date"]
+
+        day = Day.objects.get(name=day)
+        schedule = Time_Table.objects.get(day=day)
+
+        slots = schedule.slots.all()
+
+        for slot in slots:
+            slot.booked = check_booked_slot(date, slot)
         
-        serializer = Time_TableSerializer(schedule)
+        serializer = SlotSerializer(slots, many=True)
         
         return Response(serializer.data)
+
 
 # add class for updating slots
 
@@ -125,3 +134,6 @@ class SlotApi(APIView):
     # update slot
     def post(self, request):
         pass
+
+
+

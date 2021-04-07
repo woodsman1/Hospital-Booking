@@ -30,7 +30,6 @@ const Home = () => {
               }}
               format="yyyy-MM-dd"
               minDate={new Date()}
-              //   filterDate = {(date) => { setDay(date.getDay())}}
             />
           </div>
         </div>
