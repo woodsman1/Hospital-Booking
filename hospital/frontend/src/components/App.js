@@ -9,9 +9,10 @@ import {
 import Cookies from "universal-cookie";
 import Home from './comp/Home';
 import Navbar from './comp/Navbar';
-import { onLogin, RefreshTokenCall, onSignUp } from './comp/Request';
+import { onLogin, RefreshTokenCall, onSignUp } from './comp/utilities/Request';
 import Login from "./comp/Login";
 import Signup from "./comp/Signup";
+import Booking from './comp/Booking';
 
 const App = () => {
 
@@ -65,6 +66,14 @@ const App = () => {
                   <Redirect to="/" />
                 ) : (
                   <Signup onSignUp={onsignup} />
+                )}
+              </Route>
+
+              <Route exact path="/your-bookings">
+                {authenticated ? (
+                  <Redirect to="/" />
+                ) : (
+                  <Booking />
                 )}
               </Route>
               

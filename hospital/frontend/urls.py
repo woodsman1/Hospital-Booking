@@ -8,5 +8,6 @@ urlpatterns = [
     path("", index, name='index'),
     path("login/", index, name='index'),
     path("sign-up/", index, name='index'),
+    path("your-bookings/", index, name='index'),
 
 ]

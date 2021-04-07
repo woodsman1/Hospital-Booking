@@ -38,15 +38,35 @@ class DayDateSerializer(serializers.ModelSerializer):
         model = Day
         fields = ["name", "date"]
 
+class BookingSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()
+    date = serializers.DateField()
+    name = serializers.CharField()
+    slot_id = serializers.IntegerField()
+
+    def save(self, **kwargs):
+        try:
+            user = User.objects.get(pk=self.validated_data["user_id"])
+            date = self.validated_data["date"]
+            day = Day.objects.get(name=self.validated_data["name"])
+            slot = Slot.objects.get(pk=self.validated_data["slot_id"])
+            print("done")
+
+            obj = Booking(patient=user, date=date, day=day, slot=slot)
+            obj = obj.save()
+            return obj
+        except:
+            return None 
+
 class BookingDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = "__all__"
+        feilds = "__all__"
 
 class SlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slot
-        fields = ["title", "start_time", "end_time", "break_time", "booked"]
+        fields = ["pk" ,"title", "start_time", "end_time", "break_time", "booked"]
     
 
 class IdSerializer(serializers.Serializer):

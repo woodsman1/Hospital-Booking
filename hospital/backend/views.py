@@ -74,27 +74,32 @@ class getAccessToken(APIView):
 
 class BookingSlotsApi(APIView):
 
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     # get the Booked slot details by date entered
     def get(self, request):
-        serializer = DateSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        booked_slots = Booking.objects.filter(date=serializer.validated_data["date"])
+        user = self.get_user(request)
+        booked_slots = Booking.objects.filter(user=user)
         
         serializer = BookingDetailSerializer(booked_slots, many=True)
 
         return Response(serializer.data)
     
     def post(self, request):  
-        pass
+        serializer = BookingSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        obj = serializer.save()
+        if obj is None:
+            return Response("")
+        return obj
+    
+    def get_user(self, request):
+        _, token = request.META.get('HTTP_AUTHORIZATION').split(' ')
+        user = get_object_or_404(Token, key=token).user
+        return user
 
 class Time_tableApi(APIView):
 
-    # permission_classes = (IsAuthenticated,)
-
-    # eg "name":"Monday" and "date":"2021-06-12"
     def post(self, request): 
         try:
             serializer = DayDateSerializer(data=request.data)

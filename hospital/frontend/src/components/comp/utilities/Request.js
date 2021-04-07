@@ -116,7 +116,62 @@ const updateTimeTable = async (obj, authToken, setTimeTable) => {
   } catch (err) {}
 };
 
+const BookSlot = async (obj, authToken) => {
+  try {
+    
+    const res = await fetch("http://127.0.0.1:8000/api/booking/", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: "token " + authToken,
+      },
+      body: JSON.stringify(obj),
+
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res;
+        } else {
+          throw Error(`bad request ${res.status}`);
+        }
+      })
+      .catch(console.error);
+
+    const data = await res.json();
+      console.log(data)
+
+  } catch (err) {}
+};
+
+const userBookingDetail = async (authToken, setBookings) => {
+  try {
+    
+    const res = await fetch("http://127.0.0.1:8000/api/booking/", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: "token " + authToken,
+      },
+
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res;
+        } else {
+          throw Error(`bad request ${res.status}`);
+        }
+      })
+      .catch(console.error);
+
+    const data = await res.json();
+    setBookings(data)
+
+  } catch (err) {}
+};
+
 export { RefreshTokenCall };
 export { onLogin };
 export { onSignUp };
 export { updateTimeTable };
+export { BookSlot };
+export { userBookingDetail };

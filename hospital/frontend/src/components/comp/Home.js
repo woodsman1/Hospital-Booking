@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import TimeTable from "./utilities/TimeTable";
-import { updateTimeTable } from "./Request";
+import { updateTimeTable } from "./utilities/Request";
 
 const Home = ({ authToken }) => {
   const [date, setDate] = useState(new Date());
@@ -58,10 +58,18 @@ const Home = ({ authToken }) => {
 
         <div className="time-table">
           <div className="card coustom-time-table">
-            <p style={{ fontFamily: "Aleo", textAlign:"center"}}>Time Table</p>
-            {timeTable.map((slot, index) =>
-              <TimeTable key={"" + index}  slot={slot}/>
-            )}
+            <p style={{ fontFamily: "Aleo", textAlign: "center" }}>
+              Time Table
+            </p>
+            {timeTable.map((slot, index) => (
+              <TimeTable
+                key={"" + index}
+                slot={slot}
+                date={date}
+                day={day}
+                authToken={authToken}
+              />
+            ))}
           </div>
         </div>
       </div>

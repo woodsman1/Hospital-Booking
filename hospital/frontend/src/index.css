@@ -51,6 +51,7 @@
 
 .slot-area{
   margin :10px;
+  cursor: pointer; ;
 }
 
 .slot-area-booked{
