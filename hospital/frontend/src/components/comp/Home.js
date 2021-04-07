@@ -5,9 +5,6 @@ import TimeTable from "./utilities/TimeTable";
 import { updateTimeTable } from "./utilities/Request";
 
 const Home = ({ authToken }) => {
-  const [date, setDate] = useState(new Date());
-  const [day, setDay] = useState();
-  const [timeTable, setTimeTable] = useState([]);
 
   const days = [
     "Sunday",
@@ -18,6 +15,28 @@ const Home = ({ authToken }) => {
     "Friday",
     "Saturday",
   ];
+
+  const [date, setDate] = useState(new Date());
+  const [day, setDay] = useState(days[date.getDay()]);
+  const [timeTable, setTimeTable] = useState([]);
+
+
+  useEffect(() => {
+    updateTimeTable(
+      {
+        name: day,
+        date:
+          "" +
+          date.getFullYear() +
+          "-" +
+          (date.getMonth() + 1) +
+          "-" +
+          date.getDate(),
+      },
+      authToken,
+      setTimeTable
+    );
+  },[])
 
   useEffect(() => {
     updateTimeTable(
@@ -58,9 +77,9 @@ const Home = ({ authToken }) => {
 
         <div className="time-table">
           <div className="card coustom-time-table">
-            <p style={{ fontFamily: "Aleo", textAlign: "center" }}>
+            <h4 style={{ fontFamily: "Aleo", textAlign: "center" }}>
               Time Table
-            </p>
+            </h4>
             {timeTable.map((slot, index) => (
               <TimeTable
                 key={"" + index}

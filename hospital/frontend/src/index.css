@@ -59,7 +59,15 @@
   background-color: #ff9999;
 }
 
+.slot-card{
+  padding: 1%;
+}
 
-
+.slot-area-detail{
+  margin :10px;
+  cursor: pointer;
+  background-color: lightgreen;
+  overflow: auto;
+}
 
 

@@ -70,10 +70,10 @@ const App = () => {
               </Route>
 
               <Route exact path="/your-bookings">
-                {authenticated ? (
+                {!authenticated ? (
                   <Redirect to="/" />
                 ) : (
-                  <Booking />
+                  <Booking authToken={authToken} />
                 )}
               </Route>
               

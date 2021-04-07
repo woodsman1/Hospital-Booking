@@ -79,11 +79,24 @@ class BookingSlotsApi(APIView):
     # get the Booked slot details by date entered
     def get(self, request):
         user = self.get_user(request)
-        booked_slots = Booking.objects.filter(user=user)
-        
-        serializer = BookingDetailSerializer(booked_slots, many=True)
+        booked_slots = Booking.objects.filter(patient=user).order_by("date")
+        res = []
 
-        return Response(serializer.data)
+        for booking in booked_slots:
+            x = {}
+            
+            x["username"] = booking.patient.username
+            x["day"] = booking.day.name
+            x["date"] = booking.date
+            x["slot_name"] = booking.slot.title
+            x["slot_start"] = booking.slot.start_time
+            x["slot_end"] = booking.slot.end_time
+            print(x)
+            res.append(x)        
+ 
+        # serializer = BookingDetailSerializer(booked_slots, many=True)
+
+        return Response(res)
     
     def post(self, request):  
         serializer = BookingSerializer(data=request.data)
@@ -96,6 +109,7 @@ class BookingSlotsApi(APIView):
     def get_user(self, request):
         _, token = request.META.get('HTTP_AUTHORIZATION').split(' ')
         user = get_object_or_404(Token, key=token).user
+        print("done")
         return user
 
 class Time_tableApi(APIView):
@@ -110,7 +124,7 @@ class Time_tableApi(APIView):
             day = Day.objects.get(name=day)
             schedule = Time_Table.objects.get(day=day)
 
-            slots = schedule.slots.all()
+            slots = schedule.slots.all().order_by("start_time")
 
             for slot in slots:
                 slot.booked = check_booked_slot(date, slot)

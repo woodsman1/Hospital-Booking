@@ -43,6 +43,11 @@ const Navbar = ({ authenticated }) => {
               </>
             ) : (
               <>
+              <li className="nav-item active">
+                  <Link to="/your-bookings" className="nav-link">
+                    Booked Slot's 
+                  </Link>
+                </li>
 
                 <li className="nav-item active">
                   <span className="nav-link">

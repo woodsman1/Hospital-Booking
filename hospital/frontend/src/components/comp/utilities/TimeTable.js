@@ -3,8 +3,7 @@ import { GrAdd } from "react-icons/Gr";
 import { BookSlot } from "./Request";
 
 const TimeTable = ({ slot, date, day, authToken }) => {
-
-    const [change, setchange] = useState(true)
+  const [change, setchange] = useState(true);
 
   const onBook = () => {
     if (authToken === "") {
@@ -27,9 +26,11 @@ const TimeTable = ({ slot, date, day, authToken }) => {
       },
       authToken
     );
-    alert("You have booked that slot");
+    alert(
+      "You have booked that slot. Please check your Booked Slots for detail"
+    );
     slot.booked = true;
-    setchange(!change)
+    setchange(!change);
   };
 
   return (
