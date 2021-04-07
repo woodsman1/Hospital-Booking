@@ -68,9 +68,6 @@ class getAccessToken(APIView):
             return Response({"token" : token.key})
 
 
-# booking slot class 
-# Get slots details
-# book slots
 
 class BookingSlotsApi(APIView):
 
@@ -85,16 +82,15 @@ class BookingSlotsApi(APIView):
         for booking in booked_slots:
             x = {}
             
+            x["id"] = booking.pk
             x["username"] = booking.patient.username
             x["day"] = booking.day.name
             x["date"] = booking.date
             x["slot_name"] = booking.slot.title
             x["slot_start"] = booking.slot.start_time
             x["slot_end"] = booking.slot.end_time
-            print(x)
+            
             res.append(x)        
- 
-        # serializer = BookingDetailSerializer(booked_slots, many=True)
 
         return Response(res)
     
@@ -106,11 +102,32 @@ class BookingSlotsApi(APIView):
             return Response("")
         return obj
     
+    
     def get_user(self, request):
         _, token = request.META.get('HTTP_AUTHORIZATION').split(' ')
         user = get_object_or_404(Token, key=token).user
-        print("done")
+        
         return user
+
+
+class DeleteBookedSlotApI(APIView):
+
+    def post(self, request):
+        user = self.get_user(request)
+        if user is not None:
+            obj = Booking.objects.get(pk=request.data["id"])
+            if obj.patient.pk == user.pk:
+                obj.delete()
+                return Response("Record Deleted")
+        return Response("Bad Request...Unable to Delete")
+
+
+    def get_user(self, request):
+        _, token = request.META.get('HTTP_AUTHORIZATION').split(' ')
+        user = get_object_or_404(Token, key=token).user
+        
+        return user
+
 
 class Time_tableApi(APIView):
 
@@ -134,26 +151,4 @@ class Time_tableApi(APIView):
             return Response(serializer.data)
         except:
             return Response([])
-
-# add class for updating slots
-
-class SlotApi(APIView):
-
-    # Get slot details by id
-    def get(self, request):
-        serializer = IdSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        
-        id = serializer.validated_data["id"]
-        slot = Slot.objects.get(pk=id)
-
-        serializer = SlotSerializer(slot)
-        print(serializer)
-        return Response(serializer.data)
-
-    # update slot
-    def post(self, request):
-        pass
-
-
 

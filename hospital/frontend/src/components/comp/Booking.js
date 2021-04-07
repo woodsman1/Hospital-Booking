@@ -4,13 +4,18 @@ import { userBookingDetail } from "./utilities/Request";
 
 const Booking = ({ authToken }) => {
   const [Bookings, setBookings] = useState([]);
+  const [change, setChange] = useState(true)
 
   const username = localStorage.getItem("username");
 
   useEffect(() => {
     userBookingDetail(authToken, setBookings);
-  }, []);
-
+  }, []); 
+  
+  useEffect(() => {
+    userBookingDetail(authToken, setBookings);
+  }, [change]); 
+  
   return (
     <>
       <div className="container mr-5">
@@ -22,6 +27,8 @@ const Booking = ({ authToken }) => {
                 key={"" + index}
                 slot={slot}
                 authToken={authToken}
+                change = {change}
+                setChange={setChange}
               />
             ))}
       </div>
