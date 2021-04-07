@@ -67,14 +67,6 @@ const App = () => {
                   <Signup onSignUp={onsignup} />
                 )}
               </Route>
-  
-              {/* <Route exact path="/create-room">
-                {!authenticated ? (
-                  <Redirect to="/" />
-                ) : (
-                  <NewRoom onCreateRoom={onCreateRoom} />
-                )}
-              </Route> */}
               
             </Switch>
           </div>

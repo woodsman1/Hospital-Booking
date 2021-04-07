@@ -87,8 +87,7 @@ class BookingSlotsApi(APIView):
 
         return Response(serializer.data)
     
-    def post(self, request):
-        # book slot using managment.py's help
+    def post(self, request):  
         pass
 
 class Time_tableApi(APIView):

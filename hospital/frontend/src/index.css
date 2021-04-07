@@ -49,6 +49,16 @@
   overflow: auto;
 }
 
+.slot-area{
+  margin :10px;
+}
+
+.slot-area-booked{
+  margin :10px;
+  background-color: #ff9999;
+}
+
+
 
 
 
