@@ -20,7 +20,7 @@ Django, Django-Rest-framework, Django-Rest-framework Token Authentication, React
 * User can see their booked slots by clicking on the "Booked Slot's" link on the Navbar
 * User can cancle their booked slot by clicking on the dustbin icon on the Right corner of that slot   
 
-![](Demo/user_side.mp4)
+[![Watch the video](Demo/user_side.mp4)
 
 
 
