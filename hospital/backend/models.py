@@ -24,16 +24,16 @@ class Slot(models.Model):
     booked = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.pk} - {self.title}'
+        return f'{self.title} - {self.start_time} to {self.end_time}'
 
 
 class Time_Table(models.Model):
-    title = models.CharField(max_length=250)
+    # title = models.CharField(max_length=250)
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
     slots = models.ManyToManyField(Slot)
 
     def __str__(self):
-        return f'{self.day} - {self.title}'
+        return f'{self.day}'
 
 
 class Booking(models.Model):

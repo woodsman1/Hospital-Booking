@@ -29,13 +29,13 @@ const App = () => {
     }
     ,[]);
 
-    const onlogin = async (obj) =>{
+    const onlogin = (obj) =>{
         setLoading(true)
         onLogin(obj, setAuthToken, setAuthenticated)
         setLoading(false)
     }
 
-    const onsignup = async (obj) =>{
+    const onsignup = (obj) =>{
         setLoading(true)
         onSignUp(obj, setAuthToken, setAuthenticated)
         setLoading(false)

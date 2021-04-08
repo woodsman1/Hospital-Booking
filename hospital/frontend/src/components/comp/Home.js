@@ -5,7 +5,6 @@ import TimeTable from "./utilities/TimeTable";
 import { updateTimeTable } from "./utilities/Request";
 
 const Home = ({ authToken }) => {
-
   const days = [
     "Sunday",
     "Monday",
@@ -19,7 +18,6 @@ const Home = ({ authToken }) => {
   const [date, setDate] = useState(new Date());
   const [day, setDay] = useState(days[date.getDay()]);
   const [timeTable, setTimeTable] = useState([]);
-
 
   useEffect(() => {
     updateTimeTable(
@@ -36,7 +34,7 @@ const Home = ({ authToken }) => {
       authToken,
       setTimeTable
     );
-  },[])
+  }, []);
 
   useEffect(() => {
     updateTimeTable(
@@ -89,7 +87,11 @@ const Home = ({ authToken }) => {
                 authToken={authToken}
               />
             ))}
+            <br />
           </div>
+          <br/>
+          <p> *Click On White Slots to Book that slot</p>
+          <p> *Click Booked Slots to see your Booked Slot</p>
         </div>
       </div>
     </>
