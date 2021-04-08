@@ -2,7 +2,7 @@
 A simple Hospital Booking App that is built using Django which has Restjs on top of it. 
 
 # Features of Project
-The app is build in such a way that, if the user wants to run the Backend and Frontend separately, then they do it using some simple steps. Because the code is writen in such a way that they can be seperated easily.
+The app is build in such a way that, if the user wants to run the Backend and Frontend separately, then they can do it using some simple steps. Because the code is writen in such a way that it can be seperated easily.
 
 The project have Token Based Authentication. On Forntend side the refresh token is stored in Cookie. So, every time the user Refresh the page the AuthToken is requested and Stored in Memory. By this Approch Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF) attacks are taken care. And on the Backend side the Django-rest-framework Auth Token are used to create and authenticate user tokens.
 
