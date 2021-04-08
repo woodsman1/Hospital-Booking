@@ -56,7 +56,7 @@ python manage.py createsuperuser
 * Change your directory
 
 ```
-cd crazy_chat_app/frontend
+cd hospital/frontend
 ```
 
 * Install all the Dependencies (make sure you have installed nodejs on your machine)
