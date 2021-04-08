@@ -1,5 +1,5 @@
 # Hospital Booking Site
-A simple Hospital Booking App that is built using Django which has Restjs on top of it. 
+A simple Hospital Booking App that is built using Django which has Reactjs on top of it. 
 
 # Features of Project
 The app is build in such a way that, if the user wants to run the Backend and Frontend separately, then they can do it using some simple steps. Because the code is writen in such a way that it can be seperated easily.
