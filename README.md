@@ -10,7 +10,6 @@ The project have Token Based Authentication. On Forntend side the refresh token 
 Django, Django-Rest-framework, Django-Rest-framework Token Authentication, React, React-Router-Dom , React Icons, React States, react-date-picker, universal-cookie, HTML, CSS, Javascript,  
 
 
-#  User Side
 ## Features
 
 * User can Login or SignUp to the Site.
@@ -20,9 +19,13 @@ Django, Django-Rest-framework, Django-Rest-framework Token Authentication, React
 * User can see their booked slots by clicking on the "Booked Slot's" link on the Navbar
 * User can cancle their booked slot by clicking on the dustbin icon on the Right corner of that slot   
 
-[![Watch the video](Demo/user_side.mp4)
+* User Interface Demo Video
 
+https://drive.google.com/file/d/11L4GB8WoZ8Cf1kzJ5QVBm9hi8CJiLs0s/view?usp=sharing
 
+* Staff Editing Time Table Video
+
+https://drive.google.com/file/d/1Mfb57zHL7vGmEi1-NEa7NWGUZQg7CKeH/view?usp=sharing
 
 ## Django Installation
 
